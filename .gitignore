@@ -1,0 +1,3 @@
+# ignore eclipse related resources
+.settings
+.target

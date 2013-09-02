@@ -1,0 +1,91 @@
+@charset "utf-8";
+/*============= index==============*/
+.mod_img_tit,#banner .product_features .white_book p,#banner .product_features .solution p,.index_content .weibo .icon,.index_content .weibo .weibo_ctn .arrow,.index_content .app_list li{background:url('../images/index/spr_index.png?v=20130305') no-repeat;}
+#main{margin:0;width:auto;background-color:#f7f8f8;}
+.index_box{padding:30px 0 35px;}
+.index_box .mod_img_tit{margin-top:4px;}
+.index_box .mod_img_tit a{display:block;height:20px;line-height:20px;}
+.index_box .hd{height:30px;line-height:30px;margin-bottom:10px;overflow:hidden;}
+.index_box .hd h3{float:left;color:#333;font-family:"Microsoft Yahei";font-weight:normal;font-size:18px;text-shadow:0 1px 0 rgba(0,0,0,0.1);}
+.index_box .bd{}
+/*banner*/
+#banner{font-family:"Microsoft Yahei";background-color:#fff;border-top:1px solid #31a7d7;border-bottom:1px solid #efeff2;}
+#banner .product_img{height:356px;overflow:hidden;background-color:#0099d6;}
+#banner .product_img .wrap{position:relative;}
+#banner .mod_product_links{position:absolute;top:240px;left:90px;}
+#banner .mod_product_links .mod_btn_try{background-position:-170px -160px;}
+#banner .mod_product_links .mod_btn_try:hover{background-position:-170px -206px;}
+#banner .mod_product_links .mod_btn_exp{background-position:-170px -252px;}
+#banner .mod_product_links .mod_btn_exp:hover{background-position:-170px -298px;}
+#banner .mod_product_links .text_links{font-size:16px;color:#bfe5f5;}
+#banner .mod_product_links .text_links a{color:#fff;font:20px/1.5 'Microsoft Yahei';}
+#banner .hide_txt{height:0;font-size:0;overflow:hidden;}
+#banner .img_link{position:absolute;top:20px;left:515px;display:block;width:400px;height:320px;overflow:hidden;text-indent:-9999px;background:url('../images/common/space.png') no-repeat;}
+
+#banner .product_features{padding:30px 0 25px;}
+#banner .product_features li{float:left;display:inline;width:180px;height:90px;margin-right:30px;padding:0 30px 0 5px;font:14px/1.8 "Microsoft Yahei";border-right:1px solid #eee;}
+#banner .product_features a{width:100%;overflow:hidden;display:block;zoom:1;}
+#banner .product_features h3{width:50px;margin-bottom:7px;cursor:pointer;}
+#banner .product_features a p{cursor:pointer;}
+#banner .product_features a:hover{text-decoration:none;color:#555;_zoom:1;_border:0;}
+#banner  a:hover .mod_img_tit{background-position:0 -20px;}
+#banner .convenience .mod_img_tit{background-position:-50px 0;}
+#banner .convenience a:hover .mod_img_tit{background-position:-50px -20px;}
+#banner .cheap .mod_img_tit{background-position:-100px 0;}
+#banner .cheap a:hover .mod_img_tit{background-position:-100px -20px;}
+#banner .white_book .mod_img_tit{width:105px;background-position:-150px 0;}
+#banner .white_book a:hover .mod_img_tit{background-position:-150px -20px;}
+#banner .safe .mod_img_tit{background-position:-260px 0;}
+#banner .safe a:hover .mod_img_tit{background-position:-260px -20px;}
+#banner .product_features .white_book{width:210px;margin-right:0;padding-right:0;border-right:0;}
+#banner .product_features .white_book p{padding-left:60px;background-position:-300px -67px;}
+#banner .product_features .safe{width:210px;margin-right:0;padding-right:0;border-right:0;}
+#banner .product_features h3{color:#0099d6;font-size:20px;}
+#banner .solution .mod_img_tit{width:120px;background-position:-110px -80px;cursor:default;}
+#banner .product_features .solution{width:210px;margin-right:0;padding-right:0;border-right:0;overflow:visible;}
+#banner .product_features .solution p{padding-left:60px;background-position:-300px -67px;cursor:default;}
+#banner .product_features .solution a:hover{color: #F98307;text-decoration: underline;}
+#banner .product_features .solution .order,#banner .product_features .solution .entrepreneur{display:inline;white-space:nowrap;width:auto;}
+#banner .product_features .solution .order{margin-right:10px;}
+
+#banner .jxc_app_banner .mod_product_links{top:190px;left:10px;}
+#banner .btn_appStore{width: 182px; height: 62px;padding:0;line-height:200px;overflow:hidden;background: url('../images/index/btn_app_store.png') no-repeat;}
+#banner .btn_appStore:hover{background-position: 0 -62px;}
+#banner .btn_detail{width:132px;height:43px;padding:0;line-height:200px;overflow:hidden;background:url('../images/index/btn_detail.png') no-repeat;}
+#banner .btn_detail:hover{background-position:0 -43px;}
+
+#banner .zhunze_banner .mod_product_links{top: 220px;}
+
+/*content*/
+.index_content{padding:5px 0;overflow:hidden;zoom:1;}
+.index_content .index_box{float:left;display:inline;margin-right:60px;}
+.index_content .pay_user{width:440px;}
+.index_content .pay_user .mod_img_tit{width:400px;background-position:0 -40px;}
+.index_content .pay_user .img{display:block;width:80px;height:80px;margin-bottom:5px;}
+.index_content .user_list li{float:left;display:inline;margin-right:35px;text-align:center;line-height:20px;}
+.index_content .user_list li.last{margin-right:0;}
+.index_content .user_list a{color:#555;}
+.index_content .user_list p{color:#9a9a9a;}
+
+.index_content .weibo{width:230px;}
+.index_content .weibo .mod_img_tit{width:110px;background-position:0 -60px;}
+.index_content .weibo .icon{float:right;width:22px;height:22px;overflow:hidden;text-indent:-9999px;background-position:0 -86px;}
+.index_content .weibo .weibo_ctn{position:relative;height:120px;padding:5px 7px;line-height:2;background-color:#fff;border:1px solid #e0e2e5;}
+.index_content .weibo .weibo_ctn .arrow{position:absolute;top:-13px;left:30px;width:20px;height:13px;font-size:0;overflow:hidden;background-position:-33px -86px;}
+.index_content .weibo .weibo_ctn a:hover{text-decoration:none;}
+
+
+.index_content .apps{width:160px;margin-right:0;font-size:14px;}
+.index_content .apps .mod_img_tit{width:80px;background-position:-110px -60px;}
+.index_content .app_list li{padding-left:25px;line-height:24px;margin-bottom:3px;color:#0099d6;background-position:-362px 2px;}
+.index_content .app_list li a{color:#0099d6;}
+
+
+/*friend_links*/
+#friend_links{border-top:1px solid #e7e7e7;}
+#friend_links .mod_img_tit{width:80px;background-position:-190px -60px;}
+#friend_links .exchange{float:left;margin:5px 0 0 15px;line-height:1.5;}
+#friend_links .hd a{color:#0099D6;margin-left:10px;}
+#friend_links .exchange em{font-weight:bold;}
+#friend_links .links a{float:left;display:inline;margin-right:15px;line-height:24px;white-space:nowrap;}
+

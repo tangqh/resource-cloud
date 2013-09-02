@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<title>创建我的资源站点</title>
+<style type="text/css">
+li {
+	display: list-item;
+	text-align: -webkit-match-parent;
+}
+.ui-input{
+	padding: 6px 5px;
+	width: 120px;
+	height: 16px;
+	line-height: 16px;
+	border: 1px solid #ddd;
+	color: #555;
+	vertical-align: middle;
+	outline: none;
+	font-size: 14px;
+}
+.ui-btn{
+	display: inline-block;
+	margin-right: 10px;
+	height: 28px;
+	border-radius: 2px;
+	padding: 0 16px;
+	border: 1px solid #3279a0;
+	box-shadow: 0 1px 1px rgba(0,0,0,0.3);
+	background: #337fa9;
+	background: -moz-linear-gradient(top, #4994be, #337fa9);
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#4994be), to(#337fa9));
+	background: -o-linear-gradient(top, #4994be, #337fa9);
+	background: -ms-linear-gradient(top, #4994be 0%,#337fa9 100%);
+	background: linear-gradient(top, #4994be, #337fa9);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4994be', endColorstr='#337fa9');
+	font-weight: bold;
+	color: #fff;
+	text-shadow: 0 2px 2px rgba(0,0,0,0.22);
+	margin-top: 30px;
+}
+.table-th{
+   padding-right: 20px;
+   color: white;
+}
+.body-style{
+	margin-top: 100px;
+	margin-left:500px;
+    background-color: gray;
+}
+</style>
+<script type="text/javascript">
+    function check(){
+        return true;
+    }
+</script>
+</head>
+<body class="body-style">
+<div id="establish-wrap">
+  <h1><font color="white">初始化您单位的基本信息</font></h1>
+ 	<form action="tenant/add" onsubmit="return check()" method="post">
+    	<table>
+        	<tr>
+            	<th class="table-th">单位名称:</th>
+                <td><input type="text" name="tenant-name" class="ui-input"></td>
+            </tr>
+            <tr>
+            	<th class="table-th">超管账号:</th>
+                <td><input type="text" name="root-admin-id" class="ui-input"></td>
+            </tr>
+            <tr>
+                <th class="table-th">超管姓名:</th>
+                <td><input type="text" name="root-admin-name" class="ui-input"></td>
+            </tr>
+            <tr>
+            	<th class="table-th">超管密码:</th>
+                <td><input type="password" name="root-admin-pwd" class="ui-input"></td>
+            </tr>
+            <tr>
+            	<th class="table-th">确认密码:</th>
+                <td><input type="password" name="root-admin-repwd" class="ui-input"></td>
+            </tr>
+            <tr>
+                <th class="table-th">单位简介:</th>
+                <td><textarea name="tenant-note" rows="5"></textarea></td>
+            </tr>
+        </table>
+        <button type="submit" class="ui-btn">开始创建</button>
+    </form>
+</div>
+</body>
