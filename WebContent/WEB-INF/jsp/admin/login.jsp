@@ -16,6 +16,7 @@
     				if (obj.success) {
     					$('#admin_login_loginDialog').dialog('close');
     					document.getElementById("north_welcome").innerHTML = '<font color="red">' + obj.msg + '</font>';
+    					document.getElementById("tenant-name").innerHTML = '我的资源云 — ' +obj.tenantName;
     				} 
     				$.messager.show({
     					title : '提示',

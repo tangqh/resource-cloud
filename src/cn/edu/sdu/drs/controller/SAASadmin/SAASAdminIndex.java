@@ -109,11 +109,6 @@ public class SAASAdminIndex extends BaseController{
 		return "saasAdmin/layout/south";
 	}
 	
-	@RequestMapping("/layout/east")
-	public String east(){
-		return "saasAdmin/layout/east";
-	}
-	
 	@RequestMapping("/layout/west")
 	public String west(){
 		return "saasAdmin/layout/west";

@@ -48,6 +48,7 @@ public class AdminIndex extends BaseController{
 			if(admin.getPassword().equals(MD5.MD5Encode(pwd))){
 				request.getSession().setAttribute("admin", admin);
 				json.setMsg(admin.getRealname() + ", 欢迎您的登录！");
+				json.setTenantName(admin.getTenant().getName());
 				writeJson(request, response, json);
 				return;
 			}else{
@@ -63,6 +64,7 @@ public class AdminIndex extends BaseController{
 				if(ra.getPassword().equals(MD5.MD5Encode(pwd))){
 					request.getSession().setAttribute("rootAdmin", ra);
 					json.setMsg(ra.getRealName() + ", 欢迎您的登录！");
+					json.setTenantName(ra.getTenant().getName());
 					writeJson(request, response, json);
 					return;
 				}else{
@@ -110,11 +112,6 @@ public class AdminIndex extends BaseController{
 	@RequestMapping("/layout/south")
 	public String south(){
 		return "admin/layout/south";
-	}
-	
-	@RequestMapping("/layout/east")
-	public String east(){
-		return "admin/layout/east";
 	}
 	
 	@RequestMapping("/layout/west")
