@@ -7,7 +7,7 @@ package cn.edu.sdu.drs.bean;
  */
 
 public enum Gender {
-    
+
     /* 男 */
     MAN {
         @Override
@@ -15,7 +15,7 @@ public enum Gender {
             return "男";
         }
     },
-    
+
     /* 女 */
     WOMEN {
         @Override
@@ -23,7 +23,7 @@ public enum Gender {
             return "女";
         }
     },
-    
+
     /* 男女不限 */
     NONE {
         @Override
@@ -31,11 +31,11 @@ public enum Gender {
             return "男女不限";
         }
     };
-    
+
     /** abstract method getName  **/
-    
+
     public abstract String getName();
-    
+
     /**
      * 通过名称得到相应的枚举实例
      * @param name

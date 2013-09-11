@@ -21,6 +21,7 @@
 		});
 	}
 </script>
+<font color="green" size="20"><span>资源云平台管理中心</span></font>
 <div style="position: absolute; right: 0px; bottom: 0px; ">
 	<span id="saas_north_welcome"></span>
 	<a href="javascript:void(0);" class="easyui-menubutton" data-options="menu:'#layout_north_zxMenu',iconCls:'icon-back'">注销</a>

@@ -16,6 +16,8 @@ public class Json {
 	/* 备用对象 */
 	private Object obj;
 	
+	private String tenantName;
+	
 	/** constructions **/
 	
 	public Json(){}
@@ -44,5 +46,13 @@ public class Json {
 	public void setObj(Object obj) {
 		this.obj = obj;
 	}
+	
+	public String getTenantName() {
+      return tenantName;
+    }
+
+    public void setTenantName(String tenantName) {
+      this.tenantName = tenantName;
+    }
 
 }
