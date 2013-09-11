@@ -14,43 +14,49 @@ import cn.edu.sdu.drs.bean.tenant.admin.Admin;
 import cn.edu.sdu.drs.bean.tenant.admin.RootAdmin;
 import cn.edu.sdu.drs.bean.tenant.user.User;
 
+/**
+ * 
+ * @author Yonggang Yuan
+ *
+ */
+
 public class WebUtil {
-	
-	/**
-	 * 获取登录SAAS平台的超管
-	 */
-	public static SAASRootAdmin getSAASRootAdmin(HttpServletRequest request){
-		return (SAASRootAdmin) request.getSession().getAttribute("saasRootAdmin");
-	}
-	
-	/**
-	 * 获取登录SAAS平台的一般管理员
-	 */
-	public static SAASAdmin getSAASAdmin(HttpServletRequest request){
-		return (SAASAdmin) request.getSession().getAttribute("saasAdmin");
-	}
-	
-	/**
-	 * 获取登录租户的超管
-	 */
-	public static RootAdmin getRootAdmin(HttpServletRequest request){
-		return (RootAdmin) request.getSession().getAttribute("rootAdmin");
-	}
-	
-	/**
-	 * 获取登录租户的一般管理员
-	 */
-	public static Admin getAdmin(HttpServletRequest request){
-		return (Admin) request.getSession().getAttribute("admin");
-	}
-	
-	/**
-	 * 获取登录站点的用户
-	 */
-	public static User getUser(HttpServletRequest request){
-		return (User) request.getSession().getAttribute("user");
-	}
-	
+
+    /**
+     * 获取登录SAAS平台的超管
+     */
+    public static SAASRootAdmin getSAASRootAdmin(HttpServletRequest request){
+        return (SAASRootAdmin) request.getSession().getAttribute("saasRootAdmin");
+    }
+
+    /**
+     * 获取登录SAAS平台的一般管理员
+     */
+    public static SAASAdmin getSAASAdmin(HttpServletRequest request){
+        return (SAASAdmin) request.getSession().getAttribute("saasAdmin");
+    }
+
+    /**
+     * 获取登录租户的超管
+     */
+    public static RootAdmin getRootAdmin(HttpServletRequest request){
+        return (RootAdmin) request.getSession().getAttribute("rootAdmin");
+    }
+
+    /**
+     * 获取登录租户的一般管理员
+     */
+    public static Admin getAdmin(HttpServletRequest request){
+        return (Admin) request.getSession().getAttribute("admin");
+    }
+
+    /**
+     * 获取登录站点的用户
+     */
+    public static User getUser(HttpServletRequest request){
+        return (User) request.getSession().getAttribute("user");
+    }
+
     /***
      * 获取URI的路径,如路径为http://www.drs.com/action/post.htm, 得到的值为"/action/post.htm"
      * @param request
@@ -59,15 +65,16 @@ public class WebUtil {
     public static String getRequestURI(HttpServletRequest request){
         return request.getRequestURI();
     }
-    
+
     /**
      * 获取完整请求路径(含内容路径及请求参数)
      * @param request
      * @return
      */
-    public static String getRequestURIWithParam(HttpServletRequest request){     
+    public static String getRequestURIWithParam(HttpServletRequest request){
         return getRequestURI(request) + (request.getQueryString() == null ? "" : "?"+ request.getQueryString());
     }
+
     /**
      * 添加cookie
      * @param response
@@ -81,7 +88,7 @@ public class WebUtil {
         if (maxAge>0) cookie.setMaxAge(maxAge);
         response.addCookie(cookie);
     }
-    
+
     /**
      * 获取cookie的值
      * @param request
@@ -89,7 +96,7 @@ public class WebUtil {
      * @return
      */
     public static String getCookieByName(HttpServletRequest request, String name) {
-    	Map<String, Cookie> cookieMap = WebUtil.readCookieMap(request);
+        Map<String, Cookie> cookieMap = WebUtil.readCookieMap(request);
         if(cookieMap.containsKey(name)){
             Cookie cookie = (Cookie)cookieMap.get(name);
             return cookie.getValue();
@@ -97,7 +104,7 @@ public class WebUtil {
             return null;
         }
     }
-    
+
     protected static Map<String, Cookie> readCookieMap(HttpServletRequest request) {
         Map<String, Cookie> cookieMap = new HashMap<String, Cookie>();
         Cookie[] cookies = request.getCookies();
@@ -108,6 +115,7 @@ public class WebUtil {
         }
         return cookieMap;
     }
+
     /**
      * 去除html代码
      * @param inputString
@@ -124,13 +132,13 @@ public class WebUtil {
         java.util.regex.Matcher m_html;          
         java.util.regex.Pattern p_ba;
         java.util.regex.Matcher m_ba;
-        
+
         try {
             String regEx_script = "<[\\s]*?script[^>]*?>[\\s\\S]*?<[\\s]*?\\/[\\s]*?script[\\s]*?>"; //定义script的正则表达式{或<script[^>]*?>[\\s\\S]*?<\\/script> }
             String regEx_style = "<[\\s]*?style[^>]*?>[\\s\\S]*?<[\\s]*?\\/[\\s]*?style[\\s]*?>"; //定义style的正则表达式{或<style[^>]*?>[\\s\\S]*?<\\/style> }
             String regEx_html = "<[^>]+>"; //定义HTML标签的正则表达式
             String patternStr = "\\s+";
-            
+
             p_script = Pattern.compile(regEx_script,Pattern.CASE_INSENSITIVE);
             m_script = p_script.matcher(htmlStr);
             htmlStr = m_script.replaceAll(""); //过滤script标签
@@ -138,21 +146,20 @@ public class WebUtil {
             p_style = Pattern.compile(regEx_style,Pattern.CASE_INSENSITIVE);
             m_style = p_style.matcher(htmlStr);
             htmlStr = m_style.replaceAll(""); //过滤style标签
-         
+
             p_html = Pattern.compile(regEx_html,Pattern.CASE_INSENSITIVE);
             m_html = p_html.matcher(htmlStr);
             htmlStr = m_html.replaceAll(""); //过滤html标签
-            
+
             p_ba = Pattern.compile(patternStr,Pattern.CASE_INSENSITIVE);
             m_ba = p_ba.matcher(htmlStr);
             htmlStr = m_ba.replaceAll(""); //过滤空格
-         
-         textStr = htmlStr;
+
+            textStr = htmlStr;
          
         }catch(Exception e) {
-                    System.err.println("Html2Text error : " + e.getMessage());
-        }          
+            System.err.println("Html2Text error : " + e.getMessage());
+        }
         return textStr;//返回文本字符串
      }
-
 }

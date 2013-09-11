@@ -9,23 +9,22 @@
     <script type="text/javascript">
 	    var centerTabs;
 		var tabsMenu;
-    	function addTabs(opts) {
-    		var t = $('#centerTabs');
-    		if(t.tabs('exists', opts.title)){
-    			t.tabs('select', opts.title);
-    		}else{
-    			t.tabs('add', opts);
-    		}
-		}
+      function addTabs(opts) {
+            var t = $('#centerTabs');
+            if(t.tabs('exists', opts.title)){
+            	t.tabs('select', opts.title);
+            }else{
+            	t.tabs('add', opts);
+            }
+        }
     </script>
   </head>
   
   <body class="easyui-layout">
-  	<div data-options="region:'north', href:'${pageContext.request.contextPath}/saasAdmin/layout/north'" style="height:100px; background:#eee;"></div>
-  	<div data-options="region:'south'" style="height:50px; background:#eee;"></div>
-  	<div data-options="region:'west', title:'功能导航', split:true,href:'${pageContext.request.contextPath}/saasAdmin/layout/west'" style="width:200px; background:#eee;"></div>
-  	<div data-options="region:'east', title:'小功能',href:'${pageContext.request.contextPath}/saasAdmin/layout/east', split:true" style="width:200px; background:#eee;"></div>
-  	<div data-options="region:'center', title:'业务功能',href:'${pageContext.request.contextPath}/saasAdmin/layout/center'"  style="background:#eee;"></div>
-  	<jsp:include page="login.jsp"></jsp:include>
+    <div data-options="region:'north', href:'${pageContext.request.contextPath}/saasAdmin/layout/north'" style="height:100px; background:#eee;"></div>
+    <div data-options="region:'south'" style="height:50px; background:#eee;"></div>
+    <div data-options="region:'west', title:'功能导航', split:true,href:'${pageContext.request.contextPath}/saasAdmin/layout/west'" style="width:200px; background:#eee;"></div>
+    <div data-options="region:'center', title:'业务功能',href:'${pageContext.request.contextPath}/saasAdmin/layout/center'"  style="background:#eee;"></div>
+    <jsp:include page="login.jsp"></jsp:include>
   </body>
 </html>

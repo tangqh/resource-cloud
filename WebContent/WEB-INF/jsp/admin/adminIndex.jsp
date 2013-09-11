@@ -24,7 +24,6 @@
   	<div data-options="region:'north', href:'${pageContext.request.contextPath}/admin/layout/north'" style="height:100px; background:#eee;"></div>
   	<div data-options="region:'south'" style="height:50px; background:#eee;"></div>
   	<div data-options="region:'west', title:'功能导航', split:true,href:'${pageContext.request.contextPath}/admin/layout/west'" style="width:200px; background:#eee;"></div>
-  	<div data-options="region:'east', title:'小功能',href:'${pageContext.request.contextPath}/admin/layout/east', split:true" style="width:200px; background:#eee;"></div>
   	<div data-options="region:'center', title:'业务功能',href:'${pageContext.request.contextPath}/admin/layout/center'"  style="background:#eee;"></div>
   	<jsp:include page="login.jsp"></jsp:include>
   </body>
