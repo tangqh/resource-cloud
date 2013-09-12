@@ -24,6 +24,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import cn.edu.sdu.drs.bean.resourcesBean.XmlResource;
 import cn.edu.sdu.drs.bean.tenant.Tenant;
+import cn.edu.sdu.drs.bean.tenant.admin.Admin;
 import cn.edu.sdu.drs.bean.tenant.user.User;
 import cn.edu.sdu.drs.util.WebUtil;
 import cn.edu.sdu.drs.util.serarch.HeighLight;
@@ -397,6 +398,12 @@ System.out.println("检索方式为：" + type);//写到日志
         }
         while (it.hasNext() && c<pageSize) {
             foo = (Element) it.next();
+            String str = foo.elementText("tenant");
+            HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
+            Admin admin = WebUtil.getAdmin(request);
+            if(admin.getTenant() == null || str == null || !str.equals(admin.getTenant().getName())) {
+                continue;
+            }
             if(pn==0){
                 Resource r = new Resource();
                 r.setId(foo.elementText("id"));

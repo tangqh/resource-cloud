@@ -131,11 +131,16 @@ public class ResourceController extends BaseController{
 		if(pageNumber != null && !pageNumber.equals("")){
 			pn = Integer.parseInt(pageNumber);
 		}
-		
+		int webpn = pn;
 		List<Resource> qus = xmlResourceService.list(ps, pn);
+		if(qus.size() < 1) {
+		    qus = xmlResourceService.list(ps, pn-1);
+		    webpn = pn-1;
+		}
 		DataGrid<Resource> dg = new DataGrid<Resource>();
 		dg.setRows(qus);
 		dg.setTotal((long) qus.size());
+		request.setAttribute("pn", webpn);
 		writeJson(request, response, dg);
 	}
 	

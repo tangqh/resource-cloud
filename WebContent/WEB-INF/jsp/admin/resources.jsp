@@ -82,7 +82,8 @@
 		}
 		var nextUrl = '${pageContext.request.contextPath}/controller/resource/resources/' + pn  + '/' + ps;
 		$('#admin_resources_datagrid').datagrid({url:nextUrl});
-		document.getElementById("pn").value = pn;
+		<% String p = request.getParameter("pn"); %>
+		document.getElementById("pn").value = <%= p%>;
 	}
 	
 	function admin_resources_preview(){
