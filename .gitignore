@@ -1,3 +1,5 @@
 # ignore eclipse related resources
 .settings
 .target
+.classpath
+WebContent/WEB-INF/lib
