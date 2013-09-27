@@ -26,6 +26,9 @@
 				{field : 'name', title : '租户名称', width : 200}
 				,{field : 'note', title : '租户描述', width : 200}
 				,{field : 'createTime', title : '创建日期', width : 200}
+				,{field : 'host', title : '主机IP', width : 200}
+				,{field : 'port', title : '主机端口', width : 200}
+				,{field : 'rootFolder', title : '资源根文件夹', width : 200}
 				]],
 			toolbar : [
 				{text : '批量删除', iconCls : 'icon-remove', handler : function() {saasAdmin_tenants_removeFun();}}

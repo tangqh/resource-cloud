@@ -181,23 +181,56 @@
 				handler : function() {
 					var d = $(this).closest('.window-body');
 					$('#admin_resources_resourceAddForm').form('submit', {
-						url : '${pageContext.request.contextPath}/controller/resource/add',
+						//url : '${pageContext.request.contextPath}/controller/resource/add',
 						success : function(result) {
 							try {
 								var r = $.parseJSON(result);
 								if (r.success) {
-									$('#admin_resources_datagrid').datagrid('insertRow', {
-										index : 0,
-										row : r.obj
-									});
-									d.dialog('destroy');
+								    $('#admin_resources_resourceAddForm').form('submit', {
+				                        url : '${pageContext.request.contextPath}/controller/resource/add',
+				                        success : function(result) {
+				                            alert("sdas" + result);
+				                            try {
+				                                var r = $.parseJSON(result);
+				                                if (r.success) {
+				                                    $('#admin_resources_datagrid').datagrid('insertRow', {
+				                                        index : 0,
+				                                        row : r.obj
+				                                    });
+				                                    d.dialog('destroy');
+				                                }
+				                                $.messager.show({
+				                                    title : '提示',
+				                                    msg : r.msg
+				                                });
+				                            } catch (e) {
+				                                $.messager.alert('提示', result);
+				                            }
+				                        }
+				                    });
 								}
-								$.messager.show({
-									title : '提示',
-									msg : r.msg
-								});
 							} catch (e) {
-								$.messager.alert('提示', result);
+							    $('#admin_resources_resourceAddForm').form('submit', {
+                                    url : '${pageContext.request.contextPath}/controller/resource/add',
+                                    success : function(result) {
+                                        try {
+                                            var r = $.parseJSON(result);
+                                            if (r.success) {
+                                                $('#admin_resources_datagrid').datagrid('insertRow', {
+                                                    index : 0,
+                                                    row : r.obj
+                                                });
+                                                d.dialog('destroy');
+                                            }
+                                            $.messager.show({
+                                                title : '提示',
+                                                msg : r.msg
+                                            });
+                                        } catch (e) {
+                                            $.messager.alert('提示', result);
+                                        }
+                                    }
+                                });
 							}
 						}
 					});

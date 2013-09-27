@@ -8,10 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
 import cn.edu.sdu.drs.util.converter.Excel2Html;
 import cn.edu.sdu.drs.util.converter.Mp3Util;
 import cn.edu.sdu.drs.util.converter.PPT2PNG;
@@ -22,19 +19,13 @@ import cn.edu.sdu.drs.util.converter.Word2Html;
 @RequestMapping("/tenant/controller")
 public class PreviewController {
 
-    @RequestMapping(value = "/preview/{fileName:.*}/", method = RequestMethod.GET)
-    public void preview(@PathVariable String fileName,
-            HttpServletRequest request, HttpServletResponse response) {
+    @RequestMapping("/preview")
+    public void preview(HttpServletRequest request, HttpServletResponse response) {
 
-        // 获取文件夹[tomcat]/resources/
-        String srcDir = request.getSession().getServletContext()
-                .getRealPath("/");
-        for (int i = 0; i < 2; i++) {
-            srcDir = srcDir.substring(0, srcDir.lastIndexOf("\\"));
-        }
-        srcDir = srcDir + "\\resources\\";
         // 源文件路径
-        String srcFilePath = srcDir + fileName;
+        String srcFilePath = request.getParameter("url");
+        int lstidx = srcFilePath.lastIndexOf("/");
+        String fileName = srcFilePath.substring(lstidx+1);
         // 输出文件目录
         String webapp = request.getSession().getServletContext()
                 .getRealPath("/");

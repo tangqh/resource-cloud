@@ -158,6 +158,9 @@ public class BaseController extends SimpleFormController{
 		t.setName(u.getName());
 		t.setNote(u.getNote());
 		t.setCreateTime(u.getCreateTime().toLocaleString());
+		t.setHost(u.getHost());
+		t.setPort(u.getPort());
+		t.setRootFolder(u.getRootFolder());
 		return t;
 	}
 	

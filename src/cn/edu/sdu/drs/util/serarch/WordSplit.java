@@ -26,8 +26,8 @@ public class WordSplit extends Analyzer {
 	 * @param str要分的一段话
 	 * @return 返回分词后的结果
 	 */
-	public static ArrayList<Object> splitCHN(String str) {
-		ArrayList<Object> word = new ArrayList<Object>();
+	public static ArrayList<String> splitCHN(String str) {
+		ArrayList<String> word = new ArrayList<String>();
 		MIK_CAnalyzer mik_canalyzer;
 
 		mik_canalyzer = new MIK_CAnalyzer();
@@ -55,7 +55,7 @@ public class WordSplit extends Analyzer {
 	 * @param str要分的一段话
 	 * @return 返回分词后的结果
 	 */
-	public static ArrayList<Object> splitPINYIN(String str){
+	public static ArrayList<String> splitPINYIN(String str){
 		return splitCHN(str);
 	}
 	
@@ -64,7 +64,7 @@ public class WordSplit extends Analyzer {
 	 * @param str要分的一段话
 	 * @return 返回分词后的结果
 	 */
-	public static ArrayList<Object> splitENG(String str){
+	public static ArrayList<String> splitENG(String str){
 		return splitCHN(str);
 	}
 	
@@ -73,7 +73,7 @@ public class WordSplit extends Analyzer {
 	 * @param str要分的一段话
 	 * @return 返回分词后的结果
 	 */
-	public static ArrayList<Object> splitNONE(String str){
+	public static ArrayList<String> splitNONE(String str){
 		return splitCHN(str);
 	}
 }

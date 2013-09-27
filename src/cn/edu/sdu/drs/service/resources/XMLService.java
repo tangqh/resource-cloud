@@ -13,7 +13,7 @@ import cn.edu.sdu.drs.web.bean.Resource;
 
 public interface XMLService{
 	
-	public ArrayList<Object> list(ArrayList<Object> Txt, String searchKind, String type) throws UnsupportedEncodingException;
+	public List<Resource> list(ArrayList<String> Txt, String searchKind, String type) throws UnsupportedEncodingException;
 	
 	public List<Resource> list(int pageSize, int pageNumber);
 	

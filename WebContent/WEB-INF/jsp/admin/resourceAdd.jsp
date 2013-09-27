@@ -1,6 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <div align="center">
-		<form id="admin_resources_resourceAddForm" name="admin_resources_resourceAddForm" enctype="multipart/form-data" method="post" >
+		<form action="<%=request.getAttribute("submit-url") %>"
+   id="admin_resources_resourceAddForm" name="admin_resources_resourceAddForm" enctype="multipart/form-data" method="post" >
 			<table class="tableForm">
 				<tr>
 					<th>请选择文件:</th>

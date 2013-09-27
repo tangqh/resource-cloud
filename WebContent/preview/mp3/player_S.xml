@@ -1,8 +1,0 @@
-﻿<player>
-  <playlist>
-    <track>
-      <file>http://localhost:8080/resources/mp3.mp3</file>
-      <title>Rosie Thomas</title>
-      <artist>Say Hello</artist>
-      <album>-</album>
-    </track></playlist></player>

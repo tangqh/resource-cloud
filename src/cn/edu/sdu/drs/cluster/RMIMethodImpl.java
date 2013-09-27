@@ -155,8 +155,8 @@ for (int y = 0; y < IPlist.iplist.size(); y++) {
 			throws RemoteException {
 		try {
 			XMLService xm = new XMLServiceImpl();
-			return xm.list(str, kind, type); // 检索参数包括 检索内容、类型、检索方式
-		} catch (UnsupportedEncodingException e) {
+			//return xm.list(str, kind, type); // 检索参数包括 检索内容、类型、检索方式
+		} catch (Exception e) {
 		}
 		return null;
 	}

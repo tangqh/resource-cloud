@@ -1,5 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*, cn.edu.sdu.drs.web.bean.Resource" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<%
+    List<Resource> resources = (List<Resource>)request.getAttribute("records");
+%>
 
 <html>
 <head>
@@ -67,84 +71,68 @@ html, body {
 <body>
 <h2>搜索结果</h2>
  	<div class="container">
-		<div class="content">
-			<div class="wordPic"></div>
-			<div class="model">
-				<p>操作系统习题集.doc</p>
-				进程与应用程序的区别在于应用程序作为一个静态文件存储在计算机系统的硬盘等存储空间中,
-				而进程则是处于动态条件下由操作系统维护的系统资源管理实体。
-			</div>
-			<div class="operation">
-				<span class="link"><a href="">下载</a></span>
-				<span class="link"><a href="../tenant/controller/preview/1.doc/">预览</a></span>
-				<span class="time">发布时间:2013-09-23</span>
-			</div>
-		</div>
-		<div class="content">
-			<div class="xlsPic"></div>
-			<div class="model">
-				<p>学期选课表</p>
-				大二下学期选课表 - 2010-2011学年第二学期三水校区公共选修课表 序号 课程性质 开课学院 课程名称 
-				教师姓名 学分 1 容量 上课时间 面向对象 1 公共限选 公共...
-			</div>
-			<div class="operation">
-				<span class="link">下载</span>
-				<span class="link"><a href="../tenant/controller/preview/c.xls/">预览</a></span>
-				<span class="time">发布时间:2013-09-23</span>
-			</div>
-		</div>
-		<div class="content">
-			<div class="pptPic"></div>
-			<div class="model">
-				<p>面试题系列</p>
-				对每个程序员来说，没有学不会的技术，只是没有那么多的时间与精力！
-				如果能用最少的时间学透自己想要的技术，是程序员感到最幸福的事情！
-			</div>
-			<div class="operation">
-				<span class="link">下载</span>
-				<span class="link"><a href="../tenant/controller/preview/1.ppt/">预览</a></span>
-				<span class="time">发布时间:2013-09-23</span>
-			</div>
-		</div>
-		<div class="content">
-			<div class="pdfPic"></div>
-			<div class="model">
-				<p>jqueryeasyui中文培训文档</p>
-				jquery easyui 中文培训文档 1.1.3 扩展 实例 html 代码中 aa id="aa border="true" 
-				aa" 此行也可写成  id="aa" class="easyui-accordion...
-			</div>
-			<div class="operation">
-				<span class="link">下载</span>
-				<span class="link"><a href="../tenant/controller/preview/3.pdf/">预览</a></span>
-				<span class="time">发布时间:2013-09-23</span>
-			</div>
-		</div>
-		<div class="content">
-			<div class="musicPic"></div>
-			<div class="model">
-				<p>周杰伦-花海</p>
-				大二下学期选课表 - 2010-2011学年第二学期三水校区公共选修课表 序号 课程性质 开课学院 课程名称 
-				教师姓名 学分 1 容量 上课时间 面向对象 1 公共限选 公共...
-			</div>
-			<div class="operation">
-				<span class="link">下载</span>
-				<span class="link"><a href="../tenant/controller/preview/mp3.mp3/">预览</a></span>
-				<span class="time">发布时间:2013-09-23</span>
-			</div>
-		</div>
-		<div class="content">
-			<div class="videoPic"></div>
-			<div class="model">
-				<p>特仑苏广告</p>
-				大二下学期选课表 - 2010-2011学年第二学期三水校区公共选修课表 序号 课程性质 开课学院 课程名称 
-				教师姓名 学分 1 容量 上课时间 面向对象 1 公共限选 公共...
-			</div>
-			<div class="operation">
-				<span class="link">下载</span>
-				<span class="link"><a href="../tenant/controller/preview/video.flv/">预览</a></span>
-				<span class="time">发布时间:2013-09-23</span>
-			</div>
-		</div>
-	</div>
+            <%
+                if(resources != null && resources.size() > 0) {
+                    for(Resource r : resources) {
+                        //http://127.0.0.1:8081/cjbs-folder/1.doc
+                        int idx = r.getUrl().lastIndexOf(':');
+                        String url = r.getUrl().substring(0, idx+5);
+                        idx = r.getUrl().lastIndexOf('-');
+                        String rootFolder = r.getUrl().substring(idx-4, idx+7);
+                        idx = r.getTitle().lastIndexOf('.');
+                        String tar = url + "/fileManager/view?fileName="+ r.getTitle() + "&rootFolder=" + rootFolder;
+                        %>
+                        <div class="content">
+                        <%
+                        if(r.getKind() == null) {
+                            continue;
+                            }else if(r.getKind().contains("doc")) {
+                                %>
+                                <div class="wordPic"></div>
+                                <%
+                            }else if(r.getKind().contains("xls")) {
+                                %>
+                                <div class="xlsPic"></div>
+                                <%
+                            }else if(r.getKind().contains("ppt")) {
+                                %>
+                                <div class="pptPic"></div>
+                                <%
+                            }else if(r.getKind().contains("pdf")) {
+                                %>
+                                <div class="pdfPic"></div>
+                                <%
+                            }else if(r.getKind().contains("mp3") ) {
+                                %>
+                                <div class="musicPic"></div>
+                                <%
+                            }else if(r.getKind().contains("flv") || r.getKind().contains("avi") || r.getKind().contains("swf") || r.getKind().contains("application")) {
+                                %>
+                                <div class="videoPic"></div>
+                                <%
+                            }else{
+                                tar = r.getUrl();
+                                %>
+                            <div class="pptPic"></div>
+                            <%
+                            }
+                        %>
+                            <div class="model">
+                                <p><%=r.getTitle() %></p>
+                                <%=r.getDescribe() %>
+                            </div>
+                            <div class="operation">
+                                <span class="link"><a href="<%=tar%>" target="_blank">预览</a></span>
+                            </div>
+                            </div>
+                            <%
+                    }
+                }else{
+                    %>
+                    <font color="red"><h1>抱歉，没有找到符合你条件的资源！</h1></font>
+                    <%
+                }
+            %>
+            </div>
 </body>
 </html>

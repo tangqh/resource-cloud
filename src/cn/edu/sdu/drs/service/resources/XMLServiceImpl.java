@@ -4,14 +4,11 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
@@ -32,15 +29,11 @@ import cn.edu.sdu.drs.web.bean.Resource;
 
 @Service("XMLService")
 public class XMLServiceImpl implements XMLService{
-    XmlResource ji;
-    ArrayList<Object> dataSet = new ArrayList<Object>();
-    
+
     private Document doc = null;
     private Element root = null;
     private Element resourceitem = null;
     private String filepath = "\\test.xml";
-
-    int ii = 0;
 
     String staytime;
     String id;
@@ -53,10 +46,8 @@ public class XMLServiceImpl implements XMLService{
     String tenant;
     String share;
 
-    ArrayList<Object> searchContent;
+    ArrayList<String> searchContent;
 
-    private String[] kinds = new String[] { "all" };
-    
     /**
      * 更新一条纪录<br>
      * 函数名：update<br>
@@ -91,24 +82,12 @@ public class XMLServiceImpl implements XMLService{
      * 
      */
     @SuppressWarnings("unchecked")
-    public ArrayList<Object> list(ArrayList<Object> Txt, String searchKind, String type) throws UnsupportedEncodingException {
-System.out.println("检索方式为：" + type);//写到日志
+    public List<Resource> list(ArrayList<String> Txt, String searchKind, String type) throws UnsupportedEncodingException {
+        List<Resource> dataSet = new ArrayList<Resource>();
+        Resource rs ;
         String tomcat = getPath("webapps");
         String filepath = tomcat + "\\" + "test.xml";
         this.searchContent = Txt;
-        if(searchKind != null){
-            if(searchKind.equals("document")) {
-                kinds = new String[] { "doc", "ppt" };
-            } else if (searchKind.equals("mp3")) {
-                kinds = new String[] { "mp3", "wma" };
-            } else if (searchKind.equals("video")) {
-                kinds = new String[] { "asf", "avi", "rm", "swf", "wmv" };
-            } else if (searchKind.equals("picture")) {
-                kinds = new String[] { "jpg", "gif", "bmp", "jpeg", "psd", "png", "pcx", "tiff" };
-            } else{
-                kinds = new String[] { "all" };
-            }
-        }
         SAXReader reader = new SAXReader();
         Document document = null;
         try {
@@ -156,93 +135,20 @@ System.out.println("检索方式为：" + type);//写到日志
                 // 循环对比查询关键字是否符合要求
                 for (int index = 0; index < searchContent.size(); index++) {
                     // 对检索类型的检索处理
-                    boolean ok = false;
-                    if ((type.equals("every")) && (keywords.indexOf(searchContent.get(index).toString()) != -1)) {
-                        ok = true;
-                    } else {
-                        if (type.equals("all")) {
-                            ok = true;
-                            for (int jj = 0; jj < searchContent.size(); jj++) {
-                                if (!keywords.equals(searchContent.get(jj).toString())) {
-                                    ok = false;
-                                    break;
-                                }
-                            }
-                        } else {
-                            if (type.equals("complete")) {
-                                String ss = "";
-                                for (int jj = 0; jj < searchContent.size(); jj++) {
-                                    ss += searchContent.get(jj).toString();
-                                }
-                                if (keywords.indexOf(ss) != -1) {
-                                    ok = true;
-                                } else {
-                                    ok = false;
-                                }
-                            } else {
-                                if (type.equals("same")) { // 与关键字完全匹配
-                                    // 多关键字以逗号拆分
-                                    String[] chai;
-                                    if (keywords.indexOf(",") != -1) {
-                                        chai = keywords.split(",");
-                                    } else {
-                                        chai = keywords.split("，");
-                                    }
-                                    // 多关键字以逗号拆分
-                                    String sss = "";
-                                    for (int jj = 0; jj < searchContent.size(); jj++) {
-                                        sss += searchContent.get(jj).toString();
-                                    }
-                                    ok = false;
-                                    for (int jj = 0; jj < chai.length; jj++) {
-                                        if (sss.equals(chai[jj])) {
-                                            ok = true;
-                                            break;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    // 检索类型处理完毕
-                    // 符合要求
-                    if (ok) { // 符合要求
-                        // 判断 当前记录的 类别 是否和 搜索类别相同，
-                        boolean KindCom = false;
-                        if (kinds[0].equals("all")) {
-                            KindCom = true; // 如果类型为空 表示支持任何格式的类型
-                        }else{
-                            for (int j = 0; j < kinds.length; j++) {
-                                if (kind.equals(kinds[j])) {
-                                    KindCom = true; // 如果属于要搜索的类型 KindCom 为 true
-                                    break;
-                                }
-                            }
-                        }
-                        if (KindCom) {
-                            // 判断关键字中使用英文逗号还是中文逗号
-                            // 本模块的目的是为了给数据打分 获取他的价值性
-                            /*
-                             * 此块为按照title进行数据排序
-                             */
-                            DecimalFormat nf = new DecimalFormat("##0.##");
-                            double price = 0;
-                            String key = title;
-
-                            if (key.indexOf(searchContent.get(index).toString()) != -1) {
-                                price = ((float) searchContent.get(index).toString().length() / (float) key.length());
-                                price = Double.parseDouble(nf.format(price)) * 100;
-                            } else {
-                                price = 0;
-                            }
-                            // 设置关键字高亮
-                            String title2 = HeighLight.turn(title, searchContent);
-                            String describe2 = HeighLight.turn(describe, searchContent);
-                            // 关键字高亮处理完毕
-                            ji = new XmlResource(id, title2, kind, describe2, date, url, author, tenant, price);
-                            dataSet.add(ji);
-                            break;
-                        }
+                    if (keywords.indexOf(searchContent.get(index).toString()) != -1) {
+                        // 设置关键字高亮
+                        String title2 = HeighLight.turn(title, searchContent);
+                        String describe2 = HeighLight.turn(describe, searchContent);
+                        // 关键字高亮处理完毕
+                        //ji = new XmlResource(id, title2, kind, describe2, date, url, author, tenant, price);
+                        // 构造Resource
+                        rs = new Resource();
+                        rs.setDescribe(describe2);
+                        rs.setKind(kind);
+                        rs.setTitle(title2);
+                        rs.setUrl(url);
+                        dataSet.add(rs);
+                        break;
                     }
                 }
             }

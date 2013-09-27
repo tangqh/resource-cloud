@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class HeighLight {
 	
-	public static String turn(String Str, ArrayList<Object> txt) {
+	public static String turn(String Str, ArrayList<String> txt) {
 		String s = Str;
 		int od = 0;
 		int nd = 0;

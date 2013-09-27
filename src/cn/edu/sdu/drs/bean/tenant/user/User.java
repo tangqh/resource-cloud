@@ -67,7 +67,7 @@ public class User implements Serializable{
 	
 	//所在的租户
 	@ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
-	@JoinTable(name = "TENANT_USER", joinColumns = @JoinColumn(name = "TENANT_ID"), inverseJoinColumns = @JoinColumn(name = "USER_ID"))
+	@JoinTable(name = "TENANT_USER", joinColumns = @JoinColumn(name = "USER_ID"), inverseJoinColumns = @JoinColumn(name = "TENANT_ID"))
 	private Set<Tenant> tenants = new HashSet<Tenant>();
 	
 	/** constructions **/
